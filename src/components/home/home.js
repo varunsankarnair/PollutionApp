@@ -10,10 +10,14 @@ export default function WeatherPage(){
     const [graphData, setGraphData] = useState([])
     const [error, setError] = useState('')
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     const handleSearch = (event) => {
         
         event.preventDefault();
-        const cityValue = event.target.elements.city.value;
+        const cityValue = capitalizeFirstLetter(event.target.elements.city.value)
         setCity(cityValue)
         setGraphData([])
         getPollutionDetails(cityValue).then((resp => {
